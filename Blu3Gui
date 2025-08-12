@@ -251,34 +251,30 @@ button11.Activated:Connect(function()
 	if esp == false then
 		esp = true
 		button11.Text = "All Games: ESP ON"
-		for i,v in pairs(workspace:GetDescendants()) do
-			if v:IsA("Model") then
-				if game.Players:GetPlayerFromCharacter(v) then
-					if not v:FindFirstChild("Blu3GuiESP") then
-						local hl = Instance.new("Highlight", v)
-						hl.Name = "Blu3GuiESP"
-					else
-						v.Blu3GuiESP.Enabled = true
-					end
-					if game.Players:GetPlayerFromCharacter(v) == game.Players.LocalPlayer then
-						v.Blu3GuiESP.Enabled = false
-					end
+		for i,v in pairs(game.Players:GetChildren()) do
+			if v.Character then
+				if v:FindFirstChild("Blu3GuiESP") then
+					v.Blu3GuiESP.Enabled = true
+				else
+					local hl = Instance.new("Highlight", v.Character)
+					hl.Name = "Blu3GuiESP"
+				end
+				if v == game.Players.LocalPlayer then
+					v.Blu3GuiESP.Enabled = false
 				end
 			end
 		end
 	else
 		esp = false
 		button11.Text = "All Games: ESP OFF"
-		for i,v in pairs(workspace:GetDescendants()) do
-			if v:IsA("Model") then
-				if game.Players:GetPlayerFromCharacter(v) then
-					if v:FindFirstChild("Blu3GuiESP") then
-						v.Blu3GuiESP.Enabled = false
-					else
-						local hl = Instance.new("Highlight", v)
-						hl.Name = "Blu3GuiESP"
-						hl.Enabled = false
-					end
+		for i,v in pairs(game.Players:GetChildren()) do
+			if v.Character then
+				if v:FindFirstChild("Blu3GuiESP") then
+					v.Blu3GuiESP.Enabled = false
+				else
+					local hl = Instance.new("Highlight", v.Character)
+					hl.Name = "Blu3GuiESP"
+					hl.Enabled = false
 				end
 			end
 		end
