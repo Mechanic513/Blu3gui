@@ -1,5 +1,6 @@
 local button10Speed = 16
 local ifPressed = false
+local esp = false
 
 
 local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
@@ -117,6 +118,12 @@ button10.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
 button10.TextScaled = true
 button10.ClearTextOnFocus = true
 button10.PlaceholderText = "All Games: Set WalkSpeed"
+
+local button11 = Instance.new("TextButton", sframe)
+button11.BackgroundColor3 = Color3.fromRGB(46, 192, 255)
+button11.Size = UDim2.new(0, 448,0, 47)
+button11.Text = "All Games: ESP OFF"
+button11.TextScaled = true
 
 screenGui.ResetOnSpawn = false
 
@@ -237,6 +244,44 @@ button10.FocusLost:Connect(function(enter)
 	if enter then
 		ifPressed = true
 		button10Speed = button10.Text
+	end
+end)
+
+button11.Activated:Connect(function()
+	if esp == false then
+		esp = true
+		button11.Text = "All Games: ESP ON"
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("Model") then
+				if game.Players:GetPlayerFromCharacter(v) then
+					if not v:FindFirstChild("Blu3GuiESP") then
+						local hl = Instance.new("Highlight", v)
+						hl.Name = "Blu3GuiESP"
+					else
+						v.Blu3GuiESP.Enabled = true
+					end
+					if game.Players:GetPlayerFromCharacter(v) == game.Players.LocalPlayer then
+						v.Blu3GuiESP.Enabled = false
+					end
+				end
+			end
+		end
+	else
+		esp = false
+		button11.Text = "All Games: ESP OFF"
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("Model") then
+				if game.Players:GetPlayerFromCharacter(v) then
+					if v:FindFirstChild("Blu3GuiESP") then
+						v.Blu3GuiESP.Enabled = false
+					else
+						local hl = Instance.new("Highlight", v)
+						hl.Name = "Blu3GuiESP"
+						hl.Enabled = false
+					end
+				end
+			end
+		end
 	end
 end)
 
