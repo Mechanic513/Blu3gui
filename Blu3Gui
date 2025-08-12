@@ -253,14 +253,14 @@ button11.Activated:Connect(function()
 		button11.Text = "All Games: ESP ON"
 		for i,v in pairs(game.Players:GetChildren()) do
 			if v.Character then
-				if v:FindFirstChild("Blu3GuiESP") then
-					v.Blu3GuiESP.Enabled = true
+				if v.Character:FindFirstChild("Blu3GuiESP") then
+					v.Character.Blu3GuiESP.Enabled = true
 				else
 					local hl = Instance.new("Highlight", v.Character)
 					hl.Name = "Blu3GuiESP"
 				end
 				if v == game.Players.LocalPlayer then
-					v.Blu3GuiESP.Enabled = false
+					v.Character.Blu3GuiESP.Enabled = false
 				end
 			end
 		end
@@ -269,8 +269,8 @@ button11.Activated:Connect(function()
 		button11.Text = "All Games: ESP OFF"
 		for i,v in pairs(game.Players:GetChildren()) do
 			if v.Character then
-				if v:FindFirstChild("Blu3GuiESP") then
-					v.Blu3GuiESP.Enabled = false
+				if v.Character:FindFirstChild("Blu3GuiESP") then
+					v.Character.Blu3GuiESP.Enabled = false
 				else
 					local hl = Instance.new("Highlight", v.Character)
 					hl.Name = "Blu3GuiESP"
