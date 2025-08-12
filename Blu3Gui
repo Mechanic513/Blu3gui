@@ -259,9 +259,6 @@ button11.Activated:Connect(function()
 					local hl = Instance.new("Highlight", v.Character)
 					hl.Name = "Blu3GuiESP"
 				end
-				if v == game.Players.LocalPlayer then
-					v.Character.Blu3GuiESP.Enabled = false
-				end
 			end
 		end
 	else
